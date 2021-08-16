@@ -26,6 +26,12 @@ pipeline {
                 checkout([$class: 'GitSCM', extensions: [], userRemoteConfigs: [[url: 'https://github.com/Iaakashgarg/app-aakashgarg-devops.git']]])
             }
         }
+
+        stage('Unit Test') {
+            steps {
+                bat "dotnet test WebApplication4-Tests\\WebApplication4-Tests.csproj"
+            }
+        }
         stage('Start Sonarqube analysis') {
             steps {
                 withSonarQubeEnv('Test_Sonar') {
