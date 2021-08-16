@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: deployment
+metadata:
+    name: app-aakashgarg-devops-deployment
+    namespace: kubernetes-cluster-devops
+    labels:
+        app: app-aakashgarg-devops
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: app-aakashgarg-devops
+    template:
+        metadata:
+            labels:
+                app: app-aakashgarg-devops
+        spec:
+            containers:
+            - name: app-aakashgarg-devops
+              image: iaakashgarg/app-aakashgarg-devops:latest
+              ports:
+              - containerPort: 80
+                name: http
+                protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: app-aakashgarg-devops-service
+    namespace: kubernetes-cluster-devops
+spec:
+    clusterIP: 10.0.171.239
+    type: LoadBalancer
+    selector:
+        app: app-aakashgarg-devops
+    ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
