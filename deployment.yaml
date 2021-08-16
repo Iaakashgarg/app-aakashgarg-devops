@@ -37,4 +37,8 @@ spec:
     ports:
     - protocol: TCP
       port: 80
-      targetPort: 80
+      targetPort: 9376
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.0.2.127
