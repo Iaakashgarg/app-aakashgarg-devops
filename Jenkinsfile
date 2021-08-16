@@ -23,7 +23,7 @@ pipeline {
 
         stage('Code Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/feature']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/Iaakashgarg/app-aakashgarg-devops.git']]])
+                checkout([$class: 'GitSCM', extensions: [], userRemoteConfigs: [[url: 'https://github.com/Iaakashgarg/app-aakashgarg-devops.git']]])
             }
         }
         stage('Start Sonarqube analysis') {
